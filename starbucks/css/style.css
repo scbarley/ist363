@@ -76,6 +76,7 @@ h1{
     right: 1rem;
     background-color: transparent;
     border: 1px solid white;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #closeBtn svg {
