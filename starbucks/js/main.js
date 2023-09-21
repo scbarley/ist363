@@ -18,6 +18,10 @@ const introduction = `Hi, my name is ${myName}, I am ${myAge} years old and I li
 const menuBtn = document.getElementById("menuBtn");
 const closeBtn = document.getElementById("closeBtn");
 const overlay = document.getElementById ("overlay");
+const coffeeList = document.getElementById("coffeeList");
+const ascendingBtn = document.getElementById("ascendingBtn");
+const descendingBtn = document.getElementById("descendingBtn");
+
 //console.log(menuBtn);
 
 // "event name", callback function
@@ -29,6 +33,28 @@ menuBtn.addEventListener("click", function() {
 closeBtn.addEventListener("click", function() {
     overlay.classList.remove("active");
 }); //end of close Btn click event
+
+
+function purgeList() {
+    coffeeList.innerHTML = "";
+};
+
+function sortList(sortDirection) {
+    console.log({sortDirection});
+};
+
+//ascending and descending buttons
+ascendingBtn.addEventListener("click", function() {
+    console.log("ascedning clicked");
+    purgeList();
+    sortList("ascending");
+});
+
+descendingBtn.addEventListener("click", function() {
+    console.log("descending clicked");
+    purgeList();
+    sortList("descending");
+}); //end of ascending and descending button click events
 
 
 // arrays and objects 
@@ -104,7 +130,19 @@ function buildTextElement(element, className, content) {
     return newElement;
 }
 
-coffees.forEach(function(coffee) {
+const sortedCoffees = [...coffees].sort(function(a,b) {
+    if (a.title < b.title) {
+        return -1;
+    }
+    if (a.title > b.title) {
+        return 1;
+    }
+    if (a.title === b.title) {
+        return 0;
+    }
+}); //end of sorting function
+
+sortedCoffees.forEach(function(coffee) {
     //1. deconstruct the coffee object
     const { title, price, description, image } = coffee;
 
@@ -113,7 +151,7 @@ coffees.forEach(function(coffee) {
     coffeeArticle.classList.add("coffee-item");
 
     const coffeeImage = document.createElement("img");
-    // coffeeImage.src = `images/${image.fileName}`;
+    coffeeImage.src = `images/${image.fileName}`;
     coffeeImage.width = image.width;
     coffeeImage.height = image.height;
     coffeeImage.alt = image.altText;
@@ -135,11 +173,11 @@ coffees.forEach(function(coffee) {
     coffeeDescription.textContent = description;
 
     //3. append the elements to the parent article
-    // coffeeArticle.appendChild(coffeeImage);
+    coffeeArticle.appendChild(coffeeImage);
     coffeeArticle.appendChild(coffeeTitle);
     coffeeArticle.appendChild(coffeePrice);
     coffeeArticle.appendChild(coffeeDescription);
 
     //4. append article to the html document
-    document.body.appendChild(coffeeArticle);
+    coffeeList.appendChild(coffeeArticle);
 }); //end of coffees forEach method
