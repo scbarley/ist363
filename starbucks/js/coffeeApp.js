@@ -2,6 +2,7 @@
 const ascendingBtn = document.getElementById("ascendingBtn");
 const descendingBtn = document.getElementById("descendingBtn");
 const coffeeList = document.getElementById("coffeeList");
+const priceRanges = document.getElementById("priceRanges");
 
 const purgeList = () => {
     coffeeList.innerHTML = "";
@@ -80,6 +81,32 @@ descendingBtn.addEventListener("click", function() {
     //console.log(sortedList);
     displayList(sortedList);
 }); //end of ascending and descending button click events
+
+priceRanges.addEventListener("change", (event) => {
+    console.log("price range changed");
+    console.log(event.target.value);
+    const selectedRange = event.target.value;
+
+    if (selectedRange === "all") {
+        purgeList();
+        displayList(coffees);
+    } else {
+        //make "2-3" into [2,3]
+        const [minValue,maxValue] = selectedRange.split("-");
+
+        const filteredCoffees = filterCoffees(minValue,maxValue);
+
+        purgeList();
+        displayList(filteredCoffees);
+    };//end of conditional
+}); // end of priceRanges change event
+
+const filterCoffees = (minValue, maxValue) => {
+    return coffees.filter((coffee) => {
+        const {price} = coffee;
+        return price >= minValue && price <= maxValue;
+    });
+};
 
 displayList(coffees);
 // 3. purge the coffee list
