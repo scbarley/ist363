@@ -1,0 +1,23 @@
+@use "../abstracts/mixins";
+
+header {
+    background-color: teal;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    /* This is unique to SASS, nested styling */
+    h1 {
+        @include mixins.buildFontProperties(3rem, wheat, Georgia);
+    }
+    .btn {
+        background-color: pink;
+        padding: 1rem;
+        border: 0;
+        /* &:hover == button:hover, just more concise*/
+        &:hover {
+            background-color: brown;
+        }
+        &.active {
+            background-color: yellow;
+        }
+    }
+} 
