@@ -1,8 +1,6 @@
-@use "./vendor/normalize";
-@use "./base/reset";
-@use "./base/body";
-@use "./components/overlay";
-@use "./regions/header";
+@use "./vendor";
+@use "./base";
+@use "./components";
+@use "./regions";
 @use "./abstracts/vars";
-@use "./components/buttonui";
-@use "./components/coffee";
+ 
