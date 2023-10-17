@@ -1,18 +1,24 @@
 @use '../abstracts/mixins';
 
-.nav-desktop {
-    background-color: limegreen;
-    // display: none;
-    @include mixins.breakpoint(sm) {
-        //display: block;
-        background-color: red;
-    };
-    @include mixins.breakpoint(md) {
-        //display: block;
-        background-color: orange;
-    };
-    @include mixins.breakpoint(lg) {
-        //display: block;
-        background-color: violet;
-    };
-};
+.nav {
+    background-color: pink;
+    &.nav--desktop {
+        display: none;
+        @include mixins.breakpoint(laptop) {
+            display: block;
+        }
+    }
+    &__list {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    &__item {
+        a {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+    }
+}
