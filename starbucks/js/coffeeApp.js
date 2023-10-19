@@ -1,4 +1,7 @@
 // 1. create variables for the buttons(ascend & descend)
+const menuBtn = document.getElementById("menuBtn");
+const closeBtn = document.getElementById("closeBtn");
+const overlay = document.getElementById ("overlay");
 const ascendingBtn = document.getElementById("ascendingBtn");
 const descendingBtn = document.getElementById("descendingBtn");
 const coffeeList = document.getElementById("coffeeList");
@@ -82,6 +85,16 @@ const sortListByDirection = (direction, arr) => {
 
 
 // 3. create event listeners for the buttons
+// "event name", callback function
+menuBtn.addEventListener("click", function() {
+    //console.log("menu button has been clicked")
+    overlay.classList.add("active");
+}); // end of menuBtn click event
+
+closeBtn.addEventListener("click", function() {
+    overlay.classList.remove("active");
+}); //end of close Btn click event
+
 ascendingBtn.addEventListener("click", function() {
     //console.log("ascedning clicked");
     //purgeList();
